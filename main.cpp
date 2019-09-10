@@ -185,8 +185,6 @@ int main() {
 							path = graph->opt3(L);
 							if (path)
 								cout << *path;
-							else
-								cout  << "Nije pronadjen put sa zadatim kriterijumom\n" << endl;
 						}
 
 						break;

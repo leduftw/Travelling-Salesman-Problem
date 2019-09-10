@@ -496,8 +496,7 @@ Path* CompleteGraph::opt3(int L) const {
 
 	} while (totalCost > L);
 
-	if (breakNatural)
-		return path;
-	else
-		return nullptr;
+	if (!breakNatural)
+		cout << "Nije pronadjen put sa zadatim kriterijumom. Najblizi put koji je pronadjen:\n" << endl;
+	return path;
 }
