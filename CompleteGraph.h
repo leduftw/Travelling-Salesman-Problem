@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <vector>
-#include <set>
+#include <unordered_set>
 #include <random>
 #include "Path.h"
 #include "Utility.h"
@@ -28,7 +28,7 @@ class CompleteGraph {
 		g.d = nullptr;
 	}
 
-	void del();
+	void erase();
 
 public:
 
@@ -48,12 +48,12 @@ public:
 	}
 
 	~CompleteGraph() {
-		del();
+		erase();
 	}
 
 	CompleteGraph& operator=(const CompleteGraph &g) {
 		if (this != &g) {
-			del();
+			erase();
 			copy(g);
 		}
 		return *this;
@@ -61,7 +61,7 @@ public:
 
 	CompleteGraph& operator=(CompleteGraph &&g) {
 		if (this != &g) {
-			del();
+			erase();
 			move(g);
 		}
 		return *this;

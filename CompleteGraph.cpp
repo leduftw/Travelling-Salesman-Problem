@@ -25,27 +25,31 @@ void CompleteGraph::copy(const CompleteGraph &g) {
 	}
 }
 
-void CompleteGraph::del() {
+void CompleteGraph::erase() {
 	for (int i = 0; i < n; i++)
 		delete[] d[i];
 	delete[] d;
 }
 
 void CompleteGraph::randomWeights(int low, int high) {
+	int max = -1;
 	for (int i = 0; i < n; i++) {
 		d[i][i] = 0;
-		for (int j = i + 1; j < n; j++)
+		for (int j = i + 1; j < n; j++) {
 			d[i][j] = d[j][i] = (rand() / (double)RAND_MAX) * (high - low) + low;
+			if (d[i][j] > max)
+				max = d[i][j];
+		}
 	}
+
+	maxNumOfDigits = Utility::numberOfDigits(max) + 1;
 }
 
 void CompleteGraph::printWeightMatrix() const {
 	cout << "Matrica tezina:\n";
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			cout << d[i][j];
-			int currNumOfDigits = Utility::numberOfDigits(d[i][j]);
-			Utility::printSpace(maxNumOfDigits - ((currNumOfDigits == 0) ? 1 : currNumOfDigits));
+			printf("%*d", maxNumOfDigits, d[i][j]); // opa
 		}
 		cout << endl;
 	}
@@ -94,8 +98,7 @@ Path* CompleteGraph::optimalPath() const {
 			cout << endl;*/
 			temp[i]++;
 			i = 0;
-		}
-		else
+		} else
 			temp[i++] = 0;
 	}
 
@@ -138,7 +141,7 @@ Path* CompleteGraph::randomPath() const {
 }
 
 Path* CompleteGraph::nearestNeighbour(int startingVertex) const {
-	set<int> s;
+	unordered_set<int> s;
 	s.insert(startingVertex);
 	int *path = new int[n];
 	path[0] = startingVertex;
@@ -169,7 +172,7 @@ Path* CompleteGraph::nearestNeighbour(int startingVertex) const {
 }
 
 Path* CompleteGraph::furthestNeighbour(int startingVertex) const {
-	set<int> s;
+	unordered_set<int> s;
 	s.insert(startingVertex);
 	int *path = new int[n];
 	path[0] = startingVertex;
@@ -200,7 +203,7 @@ Path* CompleteGraph::furthestNeighbour(int startingVertex) const {
 }
 
 Path* CompleteGraph::kNearestNeighbour(int startingVertex, int k) const {
-	set<int> s;
+	unordered_set<int> s;
 	s.insert(startingVertex);
 
 	vector<int> path(n);

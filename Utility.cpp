@@ -1,17 +1,12 @@
 
 #include "Utility.h"
 
-void Utility::printSpace(int howManyTimes) {
-	for (int i = 0; i < howManyTimes; i++)
-		cout << " ";
-}
-
-int Utility::numberOfDigits(int a) {
-	int num = 0;
-	while (a > 0) {
-		a /= 10;
-		num++;
+int Utility::numberOfDigits(int number) {
+	int numOfDigits = 0;
+	while (number > 0) {
+		number /= 10;
+		numOfDigits++;
 	}
-	return num;
+	return numOfDigits;
 }
 

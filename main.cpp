@@ -23,7 +23,7 @@ int main() {
 	while (!end) {
 
 		int startingVertex, L;
-		
+
 		cout << menu;
 		int choice;
 		cin >> choice;
@@ -58,17 +58,14 @@ int main() {
 							cout << "Uneti su nedozvoljeni parametri. Pokusajte ponovo." << endl;
 					} while (low > high || low < 0 || high < 0);
 
-					graph->setMaxNumOfDigits(Utility::numberOfDigits(high) + 1);
 					graph->randomWeights(low, high);
 					cout << endl;
 					//graph->printWeightMatrix();
-				}
-				else if (choice == 2) {
+				} else if (choice == 2) {
 					cout << endl << "Unesite matricu tezina:\n";
 					cin >> *graph;
 					cout << endl;
-				}
-				else if (choice == 3) {
+				} else if (choice == 3) {
 					string name;
 					cout << endl << "Unesite ime fajla: ";
 					cin >> name;
@@ -76,16 +73,14 @@ int main() {
 					ifstream file1;
 					// file1.open(name + ".txt");
 					file1.open(name); // Korisnik ce intuitivno uneti nazivFajla.txt
-				
+
 					if (file1.good()) {
 						file1 >> *graph;
 						cout << "Matrica je ucitana.\n\n";
-					}
-					else
-						cout << "Greska pri otvaranju fajla! Stavite fajl u isti folder kao i program ili navedite apsolutnu putanju do fajla.\n\n";
+					} else
+						cout << "Greska pri otvaranju fajla! Stavite fajl u isti folder gde je i program ili navedite apsolutnu putanju do fajla.\n\n";
 
-				}
-				else
+				} else
 					cout << "Nepoznata komanda. Pokusajte ponovo.\n\n";
 			} while (choice != 1 && choice != 2 && choice != 3);
 
@@ -160,7 +155,7 @@ int main() {
 							cin >> startingVertex >> k;
 							if (startingVertex < 1 || startingVertex > n)
 								cout << "Pocetni cvor mora biti u opsegu [1, " << n << "]. Pokusajte ponovo.\n";
-							else if (k < 1 || k > n)
+							if (k < 1 || k > n)
 								cout << "Vrednost k mora biti u opsegu [1, " << n << "]. Pokusajte ponovo.\n";
 						} while (startingVertex < 1 || startingVertex > n || k < 1 || k > n);
 
@@ -173,7 +168,7 @@ int main() {
 
 					case 6:
 
-						if (graph->getN() < 6)
+						if (graph->getN() <= 5)
 							cout << "U grafu mora biti vise od 5 cvorova!\n\n";
 						else {
 							cout << "Unesite gornju granicu cene puta: ";
@@ -183,8 +178,7 @@ int main() {
 							if (path)
 								delete path;
 							path = graph->opt3(L);
-							if (path)
-								cout << *path;
+							cout << *path;
 						}
 
 						break;

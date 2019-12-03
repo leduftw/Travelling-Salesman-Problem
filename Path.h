@@ -19,8 +19,8 @@ public:
 		length = cost = 0;
 	}
 
-	Path(const Path &op) = delete;
-	Path& operator=(const Path &op) = delete;
+	Path(const Path &) = delete;
+	Path& operator=(const Path &) = delete;
 
 	int get(int i) const {
 		if (i < 0 || i >= n)

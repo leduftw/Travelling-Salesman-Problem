@@ -8,8 +8,7 @@ using namespace std;
 class Utility {
 public:
 
-	static void printSpace(int howManyTimes);
-	static int numberOfDigits(int a);
+	static int numberOfDigits(int number);
 
 };
 
